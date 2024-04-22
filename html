@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SESI-PE - CONTATO</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .overlay {
+      position: absolute;
+      top: 80px;
+      left: 0;
+      width: 100%;
+      height: 370px;
+      background-color: rgb(12, 102, 236);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      font-size: 60px; 
+      font-weight: bold;
+      justify-content: flex-end;
+    }
+
+    .menu {
+      list-style-type: none; 
+      margin: 0; 
+      padding: 0;
+      display: flex; 
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .menu li {
+      margin: 70px; 
+    }
+    
+    .logo {
+      height: auto;   
+    }
+
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      margin-top: 50px;
+    }
+
+    .info {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 1000px;
+      margin-bottom: 0;
+    }
+
+    input[type="text"],textarea {
+      width:1300px; 
+      padding: 40px; 
+      font-size: 56px; 
+      margin-bottom: 15px;    
+    }
+    
+    textarea[name="mensagem"] { 
+      height: 250px;
+    }
+
+    h2 {
+      font-size: 100px; 
+      margin-top: 60px; 
+      margin-left: 2260px;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <ul class="menu">
+      <img src="https://pe.sesi.org.br/dbimages/sesi-branca_360_img.png">
+      <li>PARA VOCÊ</li>
+      <li>PARA EMPRESAS</li>
+      <li>UNIDADES</li>
+      <li>TRANSPARÊNCIA</li>
+      <li>GOVERNANÇA</li>
+      <li>SOBRE NÓS</li>
+      <li>CONTATO</li>
+    </ul>
+  </div>
+  <h1 class="texto-sobre-imagem">FIEPE   IEL   CIEPE   SESI   SENAI </h1>
+  <div class="container"> 
+    <img src="https://senacsenai.com/wp-content/uploads/2022/06/Unesc-Tec.jpeg"  class="imagem">
+  </div>
+  <h2 class="h2">ENTRE EM CONTATO CONOSCO!</h2>
+  <form>
+    <div class="info">
+      <input type="text" id="nome" name="nome" placeholder="Nome">
+    </div>
+    <div class="info">
+      <input type="text" id="telefone" name="telefone"  placeholder="Telefone">
+    </div>
+    <div class="info">
+      <input type="text" id="email" name="email" placeholder="Email">
+    </div>
+    <div class="info">
+      <input type="text" id="endereço" name="endereço" placeholder="Endereço">   
+    </div>
+    <div class="info">
+      <textarea type="text" id="mensagem" name="mensagem" placeholder="Mensagem"></textarea>
+    </div>
+  </form>
+</body>
+</html>
