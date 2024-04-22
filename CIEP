@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ViaCEP Webservice</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="styles.css">
+   <body> <div>
+        <h1>Cadastrar</h1>
+       </div>
+       </body>  
+   <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+            
+        }  
+
+    form {
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    width: 320px;
+    padding: 20px;
+    border: 2px solid #5c5c5c;
+    border-radius: 10px;
+    background-color: #303030cc;
+        }
+
+        #cep-container,
+        #cidade-container,
+        #rua-container,
+        #bairro-container,
+        #estado-container,
+        #IBGE-container {
+            border: 2px solid #5c5c5c;
+            padding: 5px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        } 
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://img.freepik.com/fotos-premium/fundo-de-papel-de-parede-de-computador-de-alta-resolucao-4k_649024-7916.jpg?w=826'); /* Imagem de demonstração */
+            background-position: center;
+            background-size: cover;
+            z-index: -1;
+            animation: animateBackground 10s linear infinite;
+        }
+
+        @keyframes animateBackground {
+            0% { transform: scale(1.1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1.1); }
+        }
+       
+        h1{ 
+    margin:0;
+    padding: 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom:130%;
+    margin-left: 40%;
+    font-size: 450%;
+}
+    </style>
+    <script>
+        function limpa_formulário_cep() {
+            document.getElementById('rua').value = "";
+            document.getElementById('bairro').value = "";
+            document.getElementById('cidade').value = "";
+            document.getElementById('uf').value = "";
+            document.getElementById('ibge').value = "";
+        }
+
+        function meu_callback(conteudo) {
+            if (!("erro" in conteudo)) {
+                document.getElementById('rua').value = (conteudo.logradouro);
+                document.getElementById('bairro').value = (conteudo.bairro);
+                document.getElementById('cidade').value = (conteudo.localidade);
+                document.getElementById('uf').value = (conteudo.uf);
+                document.getElementById('ibge').value = (conteudo.ibge);
+            } else {
+                limpa_formulário_cep();
+                alert("CEP não encontrado.");
+            }
+        }
+
+        function pesquisacep(valor) {
+            var cep = valor.replace(/\D/g, '');
+
+            if (cep != "") {
+                var validacep = /^[0-9]{8}$/;
+
+                if (validacep.test(cep)) {
+                    document.getElementById('rua').value = "...";
+                    document.getElementById('bairro').value = "...";
+                    document.getElementById('cidade').value = "...";
+                    document.getElementById('uf').value = "...";
+                    document.getElementById('ibge').value = "...";
+
+                    var script = document.createElement('script');
+                    script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+                    document.body.appendChild(script);
+                } else {
+                    limpa_formulário_cep();
+                    alert("Formato de CEP inválido.");
+                }
+            } else {
+                limpa_formulário_cep();
+            }
+        }
+   </script>
+</head>
+<body>
+    <div class="background"></div>
+    <form method="get" action=".">
+        <div id="cep-container">
+            <label>Cep:</label>
+            <input name="cep" type="text" id="cep" value="" size="33" maxlength="9" onblur="pesquisacep(this.value);" />
+        </div>
+        <div id="cidade-container">
+            <label>Cidade:</label>
+            <input name="cidade" type="text" id="cidade" size="30" />
+        </div>
+        <div id="rua-container">
+            <label>Rua:</label>
+            <input name="rua" type="text" id="rua" size="33" /><br />
+        </div>
+        <div id="bairro-container">
+            <label>Bairro:</label>
+            <input name="bairro" type="text" id="bairro" size="31" /><br />
+        </div>
+        <div id="estado-container">
+            <label>Estado:</label>
+            <input name="uf" type="text" id="uf" size="31" /><br />
+        </div>
+        <div id="IBGE-container">
+            <label>IBGE:</label>
+            <input name="ibge" type="text" id="ibge" size="31" /><br />
+        </div>
+    </form>
+</body>
+</html>
